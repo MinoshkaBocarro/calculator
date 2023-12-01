@@ -24,8 +24,8 @@ function divide (firstNum, secondNum) {
 }
 
 function operate (operator, firstNum, secondNum) {
-    firstNum = parseInt(firstNum) //start here for change to floating point
-    secondNum = parseInt(secondNum)
+    firstNum = Number(firstNum) 
+    secondNum = Number(secondNum)
     switch(operator) {
         case "+":
             return add (firstNum, secondNum);
@@ -47,6 +47,13 @@ numberButtons.addEventListener('click', function(e) {
     }
 })
 
+const displayScreen = document.querySelector(".display")
+
+function updateDisplayNumber () {
+    display = currentNumber.join("");
+    displayScreen.textContent = display;
+}
+
 const operatorButtons = document.querySelector(".operators");
 
 operatorButtons.addEventListener('click', function(e) {
@@ -65,12 +72,14 @@ operatorButtons.addEventListener('click', function(e) {
     }
 })
 
-const displayScreen = document.querySelector(".display")
+const decimalButton = document.querySelector(".decimal")
 
-function updateDisplayNumber () {
-    display = currentNumber.join("");
-    displayScreen.textContent = display;
-}
+decimalButton.addEventListener('click', function (e) {
+    if (!(currentNumber.includes("."))) {
+        currentNumber.push(e.target.textContent);
+        updateDisplayNumber (); 
+    }
+})
 
 const equalsButton = document.querySelector(".equals");
 
@@ -89,7 +98,7 @@ equalsButton.addEventListener('click', function() {
 function startEquation () {
     currentResult = operate(operator, firstNum, secondNum);
     if (typeof currentResult === "number") {
-        currentResult = currentResult.toFixed(2) //do this only when decimal points exist, potentially rounding to screen size later
+        currentResult = Math.round((currentResult + Number.EPSILON) * 100) / 100
     }
     displayScreen.textContent = currentResult; 
     firstNum = currentResult;
@@ -107,10 +116,7 @@ clearButton.addEventListener('click', function() {
     }
 )
 
-//Rounding only decimals that need it
 //Rounding to fit screen
-//Impliment . with check to remove/disable event listener if dot is on display
-//Make sure can use floating point numbers
 //pretty
 //backspace button
 //keyboard suppport
