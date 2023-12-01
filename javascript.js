@@ -17,6 +17,9 @@ function multiply (firstNum, secondNum) {
 }
 
 function divide (firstNum, secondNum) {
+    if (secondNum === 0) {
+        return "Hmmmm should I compute this? Nah"
+    }
     return firstNum / secondNum;
 }
 
@@ -48,7 +51,7 @@ const operatorButtons = document.querySelector(".operators");
 
 operatorButtons.addEventListener('click', function(e) {
     if (!(e.target.className==="operators")) {
-        if (firstNum === null) { 
+        if (firstNum === null && currentNumber.length > 0) { 
             firstNum = currentNumber.join("");
             currentNumber = [];
             operator = e.target.textContent;
@@ -72,23 +75,23 @@ function updateDisplayNumber () {
 const equalsButton = document.querySelector(".equals");
 
 equalsButton.addEventListener('click', function() {
-    if (!(firstNum === null)){
-        if (!(firstNum === "") ) {
-            if (currentNumber.length > 0) {
-                console.log(!(firstNum === ""))
-                secondNum = currentNumber.join("");
-                startEquation();
-                firstNum = null;
-                secondNum = null;
-            }
-    }
+    if (!(firstNum === null) 
+        && !(firstNum === "") 
+        && (currentNumber.length > 0)){
+            secondNum = currentNumber.join("");
+            startEquation();
+            firstNum = null;
+            secondNum = null;
     }
 })
 
 
 function startEquation () {
     currentResult = operate(operator, firstNum, secondNum);
-    displayScreen.textContent = currentResult.toFixed(2); //do this only when decimal points exist, potentially rounding to screen size later
+    if (typeof currentResult === "number") {
+        currentResult = currentResult.toFixed(2) //do this only when decimal points exist, potentially rounding to screen size later
+    }
+    displayScreen.textContent = currentResult; 
     firstNum = currentResult;
     secondNum = null;
     currentNumber = [];
@@ -96,10 +99,18 @@ function startEquation () {
 
 const clearButton = document.querySelector(".clear");
 
-clearButton.addEventListener('click', function(e) {
+clearButton.addEventListener('click', function() {
     firstNum = null;
     secondNum = null;
     currentNumber = [];
     displayScreen.textContent = "CLEAR"
     }
 )
+
+//Rounding only decimals that need it
+//Rounding to fit screen
+//Impliment . with check to remove/disable event listener if dot is on display
+//Make sure can use floating point numbers
+//pretty
+//backspace button
+//keyboard suppport
