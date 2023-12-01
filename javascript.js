@@ -1,39 +1,41 @@
-let firstNumber
+let firstNum
 let operator
-let secondNumber
+let secondNum
 let currentEquation = []
 let display
 
-function add (firstNumber, secondNumber) {
-    return firstNumber + secondNumber;
+function add (firstNum, secondNum) {
+    return firstNum + secondNum;
 }
 
-function subtract (firstNumber, secondNumber) {
-    return firstNumber - secondNumber;
+function subtract (firstNum, secondNum) {
+    return firstNum - secondNum;
 }
 
-function multiply (firstNumber, secondNumber) {
-    return firstNumber * secondNumber;
+function multiply (firstNum, secondNum) {
+    return firstNum * secondNum;
 }
 
-function divide (firstNumber, secondNumber) {
-    return firstNumber / secondNumber;
+function divide (firstNum, secondNum) {
+    return firstNum / secondNum;
 }
 
-function operate (operator, firstNumber, secondNumber) {
+function operate (operator, getFirstNum, getSecondNum) {
+    firstNum = parseInt(getFirstNum) //start here for change to floating
+    secondNum = parseInt(getSecondNum)
     switch(operator) {
-        case "add":
-            return add (firstNumber, secondNumber);
-        case "subtract":
-            return subtract (firstNumber, secondNumber);
-        case "multiply":
-            return multiply (firstNumber, secondNumber);
-        case "divide":
-            return divide (firstNumber, secondNumber);
+        case "+":
+            return add (firstNum, secondNum);
+        case "-":
+            return subtract (firstNum, secondNum);
+        case "×":
+            return multiply (firstNum, secondNum);
+        case "÷":
+            return divide (firstNum, secondNum);
     }
 }
 
-numberButtons = document.querySelector(".numbers");
+const numberButtons = document.querySelector(".numbers");
 
 numberButtons.addEventListener('click', function(e) {
     if (!(e.target.className==="numbers")) {
@@ -44,29 +46,43 @@ numberButtons.addEventListener('click', function(e) {
     }
 })
 
-operatorButtons = document.querySelector(".operators");
+const operatorButtons = document.querySelector(".operators");
 
 operatorButtons.addEventListener('click', function(e) {
     if (!(e.target.className==="operators")) {
-        currentEquation.push(e.target.className);
+        currentEquation.push(` ${e.target.textContent} `);
         updateDisplay (); 
         console.log(currentEquation)
         console.log(display)
     }
 })
 
-equalsButton = document.querySelector(".equals");
+const displayScreen = document.querySelector(".display")
+
+function updateDisplay () {
+    display = currentEquation.join("");
+    displayScreen.textContent = display;
+}
+
+const equalsButton = document.querySelector(".equals");
 
 equalsButton.addEventListener('click', function(e) {
     startEquation();
     }
 )
 
-function updateDisplay () {
-    display = currentEquation.join(" ");
+function startEquation () {
+
 }
 
-function startEquation () {
+const clearButton = document.querySelector(".clear");
+
+clearButton.addEventListener('click', function(e) {
+    removeEquation();
+    }
+)
+
+function removeEquation () {
 
 }
 
