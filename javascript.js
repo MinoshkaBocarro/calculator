@@ -1,7 +1,6 @@
 let firstNum = null;
 let operator;
 let secondNum = null;
-let currentEquation = [];
 let display;
 let currentNumber = [];
 
@@ -49,16 +48,16 @@ const operatorButtons = document.querySelector(".operators");
 
 operatorButtons.addEventListener('click', function(e) {
     if (!(e.target.className==="operators")) {
-        if (firstNum === null) { // but this is currently reseting the first number instead of delivering the previous equated number, reset on = and clear only
+        if (firstNum === null) { 
             firstNum = currentNumber.join("");
-            currentNumber = []
+            currentNumber = [];
             operator = e.target.textContent;
-        } else if (secondNum === null) {
+        } else if (secondNum === null && currentNumber.length > 0) {
             secondNum = currentNumber.join("");
             startEquation();
-            firstNum = null;
-            secondNum = null;
+            operator = e.target.textContent;
         } else {
+            operator = e.target.textContent;
         }
     }
 })
@@ -72,77 +71,35 @@ function updateDisplayNumber () {
 
 const equalsButton = document.querySelector(".equals");
 
-equalsButton.addEventListener('click', function(e) {
-    //currentEquation.push(""); try this later if there are issues with weird user inputs
-    startEquation();
+equalsButton.addEventListener('click', function() {
+    if (!(firstNum === null)){
+        if (!(firstNum === "") ) {
+            if (currentNumber.length > 0) {
+                console.log(!(firstNum === ""))
+                secondNum = currentNumber.join("");
+                startEquation();
+                firstNum = null;
+                secondNum = null;
+            }
     }
-)
+    }
+})
+
 
 function startEquation () {
     currentResult = operate(operator, firstNum, secondNum);
-    displayScreen.textContent = currentResult;
-    /*while ((currentEquation.length > 1)) {
-        // send that to operate, get the result back and add it back to array at the start with unshift
-        /*firstNum = getNum(currentEquation).join("");
-        operator = currentEquation.splice(0, 1).toString();
-        secondNum = getNum(currentEquation).join("");
-        currentEquation.unshift((operate(operator, firstNum, secondNum)));
-        displayScreen.textContent = currentEquation;
-    }
-    displayScreen.textContent = currentEquation;*/
+    displayScreen.textContent = currentResult.toFixed(2); //do this only when decimal points exist, potentially rounding to screen size later
+    firstNum = currentResult;
+    secondNum = null;
+    currentNumber = [];
 }
-// keep this in mind for potential refinement later (.split)
-// can I use reduce? 
-/*function getNum () {
-    let endOfNum = currentEquation.findIndex(item => (
-        item === " + "|| 
-        item === " - "|| 
-        item === " × "||
-        item === " ÷ "));
-    let numArr;
-    if (!(endOfNum === -1)) {
-        numArr = currentEquation.slice(0, endOfNum);
-    } 
-    else if (currentEquation.length > 1) {
-        endOfNum = currentEquation.length;
-        numArr = currentEquation.slice(0, endOfNum);
-    } else if (endOfNum === -1) {
-        numArr = currentEquation.slice(0);
-    } 
-    return currentEquation.splice(0, numArr.length);
-}*/
-//what if they start with a negative num? create special negative number? make sure it doesn't break if they use the subtract button
 
 const clearButton = document.querySelector(".clear");
 
 clearButton.addEventListener('click', function(e) {
-    removeEquation();
+    firstNum = null;
+    secondNum = null;
+    currentNumber = [];
+    displayScreen.textContent = "CLEAR"
     }
 )
-
-function removeEquation () {
-
-}
-
-//click number / operator
-//add number / operator to display
-
-
-// user clicks number
-// number goes to display
-// user clicks another number
-// number goes after first number (do this for n numebrs)
-// user clicks operator
-// preivous number stays on display
-// user clicks number
-// new number replaces previous numbers
-// user clicks number 
-//number goes after first number (do this for n numbers)
-// user clicks operator
-// evaluate first two numbers
-// result of evaluation shows on display
-// uswer clicks number
-// number replaces evalution
-// repeat
-
-// keep doing an array but a check in the operator for the array length maybe (be careful abouut there being one numv)?
