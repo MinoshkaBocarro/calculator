@@ -106,6 +106,15 @@ function startEquation () {
     currentNumber = [];
 }
 
+const backspaceButton = document.querySelector(".backspace")
+
+backspaceButton.addEventListener('click', function () {
+    if (currentNumber.length > 0) {
+        currentNumber.pop();
+        updateDisplayNumber();
+    }
+})
+
 const clearButton = document.querySelector(".clear");
 
 clearButton.addEventListener('click', function() {
@@ -116,7 +125,7 @@ clearButton.addEventListener('click', function() {
     }
 )
 
-//Rounding to fit screen
+//Rounding decimals to fit screen
 //pretty
-//backspace button
+    // keep the display at fixed hight
 //keyboard suppport
