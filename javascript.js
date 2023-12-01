@@ -40,9 +40,6 @@ const numberButtons = document.querySelector(".numbers");
 
 numberButtons.addEventListener('click', function(e) {
     if (!(e.target.className==="numbers")) {
-        if(!(firstNum === null)) {
-            currentNumber = [];
-        }
         currentNumber.push(e.target.textContent);
         updateDisplayNumber (); 
     }
@@ -54,6 +51,7 @@ operatorButtons.addEventListener('click', function(e) {
     if (!(e.target.className==="operators")) {
         if (firstNum === null) { // but this is currently reseting the first number instead of delivering the previous equated number, reset on = and clear only
             firstNum = currentNumber.join("");
+            currentNumber = []
             operator = e.target.textContent;
         } else if (secondNum === null) {
             secondNum = currentNumber.join("");
