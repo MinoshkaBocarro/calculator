@@ -2,6 +2,7 @@ let firstNumber
 let operator
 let secondNumber
 let currentEquation = []
+let display
 
 function add (firstNumber, secondNumber) {
     return firstNumber + secondNumber;
@@ -37,6 +38,37 @@ numberButtons = document.querySelector(".numbers");
 numberButtons.addEventListener('click', function(e) {
     if (!(e.target.className==="numbers")) {
         currentEquation.push(e.target.textContent);
-        console.log(currentEquation);
+        updateDisplay (); 
+        console.log(currentEquation)
+        console.log(display)
     }
 })
+
+operatorButtons = document.querySelector(".operators");
+
+operatorButtons.addEventListener('click', function(e) {
+    if (!(e.target.className==="operators")) {
+        currentEquation.push(e.target.className);
+        updateDisplay (); 
+        console.log(currentEquation)
+        console.log(display)
+    }
+})
+
+equalsButton = document.querySelector(".equals");
+
+equalsButton.addEventListener('click', function(e) {
+    startEquation();
+    }
+)
+
+function updateDisplay () {
+    display = currentEquation.join(" ");
+}
+
+function startEquation () {
+
+}
+
+//click number / operator
+//add number / operator to display
