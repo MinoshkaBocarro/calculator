@@ -18,14 +18,14 @@ function multiply (firstNum, secondNum) {
 
 function divide (firstNum, secondNum) {
     if (secondNum === 0) {
-        return "Hmmmm should I compute this? Nah"
+        return "Hmmmm should I compute this? Nah";
     }
     return firstNum / secondNum;
 }
 
 function operate (operator, firstNum, secondNum) {
-    firstNum = Number(firstNum) 
-    secondNum = Number(secondNum)
+    firstNum = Number(firstNum); 
+    secondNum = Number(secondNum);
     switch(operator) {
         case "+":
             return add (firstNum, secondNum);
@@ -40,14 +40,33 @@ function operate (operator, firstNum, secondNum) {
 
 const numberButtons = document.querySelector(".numbers");
 
-numberButtons.addEventListener('click', function(e) {
+/*numberButtons.addEventListener('click', function(e){
     if (!(e.target.className==="numbers")) {
-        currentNumber.push(e.target.textContent);
-        updateDisplayNumber (); 
+        getNumber(e);
     }
+});*/
+
+const calculator = document.querySelector(".calculator");
+console.log(calculator)
+
+calculator.addEventListener('click', function(e) {
+    focus();
 })
 
-const displayScreen = document.querySelector(".display")
+calculator.addEventListener('keyup', function (e) {
+        e.stopPropagation();
+        console.log (typeof(e.key));
+        getNumber(e);
+        //if (typeof (e.key) === "number") {
+        }
+);
+
+function getNumber() {
+        currentNumber.push(e.target.textContent);
+        updateDisplayNumber ();     
+}
+
+const displayScreen = document.querySelector(".display");
 
 function updateDisplayNumber () {
     display = currentNumber.join("");
@@ -70,16 +89,16 @@ operatorButtons.addEventListener('click', function(e) {
             operator = e.target.textContent;
         }
     }
-})
+});
 
-const decimalButton = document.querySelector(".decimal")
+const decimalButton = document.querySelector(".decimal");
 
 decimalButton.addEventListener('click', function (e) {
     if (!(currentNumber.includes("."))) {
         currentNumber.push(e.target.textContent);
         updateDisplayNumber (); 
     }
-})
+});
 
 const equalsButton = document.querySelector(".equals");
 
@@ -92,13 +111,13 @@ equalsButton.addEventListener('click', function() {
             firstNum = null;
             secondNum = null;
     }
-})
+});
 
 
 function startEquation () {
     currentResult = operate(operator, firstNum, secondNum);
     if (typeof currentResult === "number") {
-        currentResult = Math.round((currentResult + Number.EPSILON) * 100) / 100
+        currentResult = Math.round((currentResult + Number.EPSILON) * 100) / 100;
     }
     displayScreen.textContent = currentResult; 
     firstNum = currentResult;
@@ -113,7 +132,7 @@ backspaceButton.addEventListener('click', function () {
         currentNumber.pop();
         updateDisplayNumber();
     }
-})
+});
 
 const clearButton = document.querySelector(".clear");
 
@@ -121,9 +140,9 @@ clearButton.addEventListener('click', function() {
     firstNum = null;
     secondNum = null;
     currentNumber = [];
-    displayScreen.textContent = "CLEAR"
+    displayScreen.textContent = "CLEAR";
     }
-)
+);
 
 //Rounding decimals to fit screen
 //pretty
