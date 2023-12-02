@@ -40,27 +40,24 @@ function operate (operator, firstNum, secondNum) {
 
 const numberButtons = document.querySelector(".numbers");
 
-/*numberButtons.addEventListener('click', function(e){
+numberButtons.addEventListener('click', function(e){
     if (!(e.target.className==="numbers")) {
         getNumber(e);
     }
-});*/
+});
 
 const calculator = document.querySelector(".calculator");
-console.log(calculator)
-
-calculator.addEventListener('click', function(e) {
-    focus();
-})
 
 calculator.addEventListener('keyup', function (e) {
-        console.log (typeof(e.key));
-        getNumber(e);
-        //if (typeof (e.key) === "number") {
-        }
+    if (isFinite(e.key)) {
+        console.log(isFinite(e.key))
+        console.log(e.key)
+        getNumber(e.key);
+    }
+}
 );
 
-function getNumber() {
+function getNumber(e) {
         currentNumber.push(e.target.textContent);
         updateDisplayNumber ();     
 }
