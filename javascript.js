@@ -31,9 +31,9 @@ function operate (operator, firstNum, secondNum) {
             return add (firstNum, secondNum);
         case "-":
             return subtract (firstNum, secondNum);
-        case "×":
+        case "*":
             return multiply (firstNum, secondNum);
-        case "÷":
+        case "/":
             return divide (firstNum, secondNum);
     }
 }
@@ -42,7 +42,7 @@ const numberButtons = document.querySelector(".numbers");
 
 numberButtons.addEventListener('click', function(e){
     if (!(e.target.className==="numbers")) {
-        getNumber(e);
+        getNumber(e.target.textContent);
     }
 });
 
@@ -50,15 +50,22 @@ const calculator = document.querySelector(".calculator");
 
 calculator.addEventListener('keyup', function (e) {
     if (isFinite(e.key)) {
-        console.log(isFinite(e.key))
-        console.log(e.key)
         getNumber(e.key);
+    } else if (e.key === "+"||
+                e.key === "-"||
+                e.key === "/"||
+                e.key === "*") {
+                    getOperator(e.key);
+    } else if (e.key === "="|| e.key === "Enter") {
+        getResult();
+    } else if (e.key === "Backspace") {
+        useBackspace();
     }
 }
 );
 
-function getNumber(e) {
-        currentNumber.push(e.target.textContent);
+function getNumber(givenNum) {
+        currentNumber.push(givenNum);
         updateDisplayNumber ();     
 }
 
@@ -73,19 +80,23 @@ const operatorButtons = document.querySelector(".operators");
 
 operatorButtons.addEventListener('click', function(e) {
     if (!(e.target.className==="operators")) {
-        if (firstNum === null && currentNumber.length > 0) { 
-            firstNum = currentNumber.join("");
-            currentNumber = [];
-            operator = e.target.textContent;
-        } else if (secondNum === null && currentNumber.length > 0) {
-            secondNum = currentNumber.join("");
-            startEquation();
-            operator = e.target.textContent;
-        } else {
-            operator = e.target.textContent;
-        }
+        getOperator(e.target.className);
     }
 });
+
+function getOperator (givenOperator) {
+    if (firstNum === null && currentNumber.length > 0) { 
+        firstNum = currentNumber.join("");
+        currentNumber = [];
+        operator = givenOperator;
+    } else if (secondNum === null && currentNumber.length > 0) {
+        secondNum = currentNumber.join("");
+        startEquation();
+        operator = givenOperator;
+    } else {
+        operator = givenOperator;
+    }
+}
 
 const decimalButton = document.querySelector(".decimal");
 
@@ -99,6 +110,10 @@ decimalButton.addEventListener('click', function (e) {
 const equalsButton = document.querySelector(".equals");
 
 equalsButton.addEventListener('click', function() {
+    getResult();
+});
+
+function getResult () {
     if (!(firstNum === null) 
         && !(firstNum === "") 
         && (currentNumber.length > 0)){
@@ -107,8 +122,7 @@ equalsButton.addEventListener('click', function() {
             firstNum = null;
             secondNum = null;
     }
-});
-
+}
 
 function startEquation () {
     currentResult = operate(operator, firstNum, secondNum);
@@ -124,11 +138,15 @@ function startEquation () {
 const backspaceButton = document.querySelector(".backspace")
 
 backspaceButton.addEventListener('click', function () {
+    useBackspace;
+});
+
+function useBackspace () {
     if (currentNumber.length > 0) {
         currentNumber.pop();
         updateDisplayNumber();
     }
-});
+}
 
 const clearButton = document.querySelector(".clear");
 
@@ -143,4 +161,3 @@ clearButton.addEventListener('click', function() {
 //Rounding decimals to fit screen
 //pretty
     // keep the display at fixed hight
-//keyboard suppport
