@@ -54,7 +54,6 @@ calculator.addEventListener('click', function(e) {
 })
 
 calculator.addEventListener('keyup', function (e) {
-        e.stopPropagation();
         console.log (typeof(e.key));
         getNumber(e);
         //if (typeof (e.key) === "number") {
