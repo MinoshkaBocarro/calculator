@@ -46,6 +46,12 @@ numberButtons.addEventListener('click', function(e){
     }
 });
 
+const zeroButton = document.querySelector(".zero");
+
+zeroButton.addEventListener('click', function(e){
+    getNumber(e.target.textContent);
+});
+
 const calculator = document.querySelector(".calculator");
 
 calculator.addEventListener('keyup', function (e) {
@@ -138,7 +144,7 @@ function startEquation () {
 const backspaceButton = document.querySelector(".backspace")
 
 backspaceButton.addEventListener('click', function () {
-    useBackspace;
+    useBackspace();
 });
 
 function useBackspace () {
@@ -161,3 +167,4 @@ clearButton.addEventListener('click', function() {
 //Rounding decimals to fit screen
 //pretty
     // keep the display at fixed hight
+//once click equals to should implement if want to continue function after that

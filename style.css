@@ -1,3 +1,90 @@
+html {
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
 :focus {
     outline: none;
+}
+
+.calculator-container {
+    display: flex;
+    height: 100vh;
+}
+
+.calculator {
+    border: black 2px solid;
+    margin: auto;
+    height: 320px;
+    width: 290px;
+    display: flex;
+    flex-direction: column;
+}
+
+.display {
+    height: 70px;
+    border: pink 2px solid;
+    flex-basis: auto;
+}
+
+.buttons {
+    display: flex;
+    flex-grow: 1;
+}
+
+
+.digits {
+    display: flex;
+    flex-direction: column;
+}
+
+.numbers {
+    width: 150px;
+    border: purple 2px solid;
+    display: flex;
+    justify-content: space-around;
+    align-content: space-around;
+    flex-wrap: wrap;
+    flex-grow: 5;
+}
+
+.function-buttons {
+    flex-grow: 1;
+}
+
+.equating-buttons {
+    border: orange 2px solid;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0; /* adjust this after final layout*/
+}
+
+.erasing-buttons {
+    width: 68px;
+    border: red 2px solid;
+}
+
+.bottom-numbers {
+    width: 150px;
+    border: yellow 2px solid;
+    justify-content: space-between;
+    padding: 0 5px; /* adjust this after final layout*/
+    align-items: center;
+    display: flex;
+    flex-grow: 1;
+}
+
+.numbers button, .zero, .decimal {
+    height: 40px;
+    width: 40px;
+} 
+
+.operators button {
+    height: 55px;
+    width: 40px;
 }

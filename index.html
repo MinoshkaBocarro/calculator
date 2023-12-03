@@ -6,29 +6,43 @@
     <link href="style.css" rel="stylesheet">
 </head>
 <body>
-    <div class="calculator" tabindex="-1">
-        <div class="display">124+5930</div>
-        <div class="numbers">
-            <button class="number 9">9</button>
-            <button class="number 8">8</button>
-            <button class="number 7">7</button>
-            <button class="number 6">6</button>
-            <button class="number 5">5</button>
-            <button class="number 4">4</button>
-            <button class="number 3">3</button>
-            <button class="number 2">2</button>
-            <button class="number 1">1</button>
-            <button class="number 0">0</button>
+    <div class="calculator-container">
+        <div class="calculator" tabindex="-1">
+            <div class="display">124+5930</div>
+            <div class="buttons">
+                <div class="digits">
+                    <div class="numbers">
+                        <button>9</button>
+                        <button>8</button>
+                        <button>7</button>
+                        <button>6</button>
+                        <button>5</button>
+                        <button>4</button>
+                        <button>3</button>
+                        <button>2</button>
+                        <button>1</button>
+                    </div>
+                    <div class="bottom-numbers">
+                        <button class="zero">0</button>
+                        <button class="decimal">.</button>
+                    </div>
+                </div>
+                <div class="function-buttons">
+                    <div class="erasing-buttons">
+                        <button class="clear">CLEAR</button>
+                        <button class="backspace">←</button>
+                    </div>
+                    <div class="equating-buttons">
+                        <div class="operators">
+                            <button class="+">+</button>
+                            <button class="-">-</button>
+                            <button class="*">×</button>
+                            <button class="/">÷</button>
+                        </div>
+                        <button class="equals">=</button>
+                    </div>
+                </div>
+            </div>
         </div>
-        <button class="decimal">.</button>
-        <div class="operators">
-            <button class="+">+</button>
-            <button class="-">-</button>
-            <button class="*">×</button>
-            <button class="/">÷</button>
-        </div>
-        <button class="equals">=</button>
-        <button class="clear">CLEAR</button>
-        <button class="backspace">←</button>
     </div>
 </body>
