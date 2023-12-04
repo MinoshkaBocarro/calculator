@@ -1,8 +1,9 @@
 let firstNum = null;
 let operator;
 let secondNum = null;
-let display;
 let currentNumber = [];
+let operatorClicked;
+let equalsClicked;
 
 function add (firstNum, secondNum) {
     return firstNum + secondNum;
@@ -71,15 +72,20 @@ calculator.addEventListener('keyup', function (e) {
 );
 
 function getNumber(givenNum) {
-        currentNumber.push(givenNum);
-        updateDisplayNumber ();     
+    if ((operatorClicked === false) && equalsClicked) {
+        firstNum = null;
+        secondNum = null;
+        equalsClicked = false;
+    }
+    operatorClicked = false
+    currentNumber.push(givenNum);
+    updateDisplayNumber ();     
 }
 
 const displayScreen = document.querySelector(".display");
 
 function updateDisplayNumber () {
-    display = currentNumber.join("");
-    displayScreen.textContent = display;
+    displayScreen.textContent = currentNumber.join("");
 }
 
 const operatorButtons = document.querySelector(".operators");
@@ -91,6 +97,7 @@ operatorButtons.addEventListener('click', function(e) {
 });
 
 function getOperator (givenOperator) {
+    operatorClicked = true
     if (firstNum === null && currentNumber.length > 0) { 
         firstNum = currentNumber.join("");
         currentNumber = [];
@@ -123,12 +130,18 @@ function getResult () {
     if (!(firstNum === null) 
         && !(firstNum === "") 
         && (currentNumber.length > 0)){
-            secondNum = currentNumber.join("");
+            secondNum = currentNumber.join(""); 
             startEquation();
-            firstNum = null;
-            secondNum = null;
+            equalsClicked = true;
+        }
+    if (operatorClicked) {
+        secondNum = firstNum;
+        startEquation();
+        operatorClicked = false;
+        equalsClicked = true;
     }
 }
+
 
 function startEquation () {
     currentResult = operate(operator, firstNum, secondNum);
@@ -159,6 +172,7 @@ const clearButton = document.querySelector(".clear");
 clearButton.addEventListener('click', function() {
     firstNum = null;
     secondNum = null;
+    operator = null;
     currentNumber = [];
     displayScreen.textContent = "CLEAR";
     }
