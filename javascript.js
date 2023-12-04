@@ -91,8 +91,8 @@ function updateDisplayNumber () {
 const operatorButtons = document.querySelector(".operators");
 
 operatorButtons.addEventListener('click', function(e) {
-    if (!(e.target.className==="operators")) {
-        getOperator(e.target.className);
+    if ((e.target.classList[1]==="operators")) {
+        getOperator(e.target.classList[0]);
     }
 });
 
@@ -181,4 +181,3 @@ clearButton.addEventListener('click', function() {
 //Rounding decimals to fit screen
 //pretty
     // keep the display at fixed hight
-//once click equals to should implement if want to continue function after that

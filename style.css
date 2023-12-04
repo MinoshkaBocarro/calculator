@@ -58,9 +58,10 @@ html {
 .equating-buttons {
     border: orange 2px solid;
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
     padding: 5px 0; /* adjust this after final layout*/
 }
 
@@ -84,7 +85,7 @@ html {
     width: 40px;
 } 
 
-.operators button {
+.equating-buttons button {
     height: 55px;
     width: 40px;
 }
