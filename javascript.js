@@ -145,9 +145,7 @@ function getResult () {
 
 function startEquation () {
     currentResult = operate(operator, firstNum, secondNum);
-    if (typeof currentResult === "number") {
-        currentResult = Math.round((currentResult + Number.EPSILON) * 100) / 100;
-    }
+    currentResult = Math.round((currentResult + Number.EPSILON) * 100) / 100;
     displayScreen.textContent = currentResult; 
     firstNum = currentResult;
     secondNum = null;
