@@ -24,21 +24,20 @@ html {
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
 .display-container {
     height: 160px;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
-    background-color: hsl(170, 70%, 70%);
+    background-color: hsl(170, 90%, 80%);
     border-width: 20px;
-    flex-basis: auto;
-    flex-shrink: 0;
     display: flex;
 }
 
 .display-outline {
-    background-color: hsla(128, 71%, 80%, 0.485);
+    background-color: hsl(128, 60%, 80%);
     box-shadow: rgba(0, 0, 0, 0.24) inset 0px 3px 8px;
     padding: 10px;
     display: flex;
@@ -52,6 +51,8 @@ html {
     margin-top: auto;
     font-size: 49px;
     padding: 0 5px;
+    max-width: 400px;
+    overflow-x: scroll;
 }
 
 
@@ -70,7 +71,7 @@ html {
     display: flex;
     flex-direction: column;
     border-width: 0 2px 0 0;
-    background-color: hwb(350 76% 0%);
+    background-color: #ffc2cc;
     border-bottom-left-radius: 20px;
 }
 
@@ -86,7 +87,7 @@ html {
 .bottom-numbers {
     width: 300px;
     justify-content: space-between;
-    padding: 5px 10px; /* adjust this after final layout*/
+    padding: 5px 10px; 
     align-items: center;
     display: flex;
     flex-grow: 1;
@@ -95,18 +96,16 @@ html {
 
 .function-buttons {
     flex-grow: 1;
-    background-color: hsl(308, 70%,80%);
+    background-color: #f0a8e6;
     border-bottom-right-radius: 20px;
 }
 
 .operating-buttons {
     display: flex;
     justify-content: space-around;
-    align-items: center;
-    align-content: space-around;
     gap: 15px;
     flex-wrap: wrap;
-    padding: 10px 12px; /* adjust this after final layout*/
+    padding: 10px 12px;
 }
 
 .erasing-buttons {
@@ -120,13 +119,13 @@ html {
 .equating-button {
     display: flex;
     justify-content: center;
-    align-items: center;
     padding: 12px 0;
 }
 
 .numbers button, .zero, .decimal {
     height: 80px;
     width: 80px;
+    background-color: #e0f7f3;
 } 
 
 button.operators {
@@ -142,6 +141,11 @@ button.equals {
 button.clear {
     height: 60px;
     width: 150px;
+    font-size: 30px;
+}
+
+.operators, .equals, .clear, .backspace {
+    background-color: #f2f3dc;
 }
 
 button.backspace {
@@ -150,16 +154,20 @@ button.backspace {
 }
 
 button {
-    background-color: ;
-    font-size: ;
-    padding: ;
-    border-radius: ;
-    border: ;
-    transition-duration: ;
-    box-shadow: ;
-    width: ;
+    font-family: Georgia, 'Times New Roman', Times, serif, sans-serif;
+    font-size: 40px;
+    padding: 10px;
+    border-radius: 4px;
+    transition-duration: 0.5s;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
 }
 
-button:hover {
+button.zero:hover, button.decimal:hover, .numbers button:hover{
+    border-color: rgb(190, 211, 251);
+    border-width: 5px;
+}
 
+button.operators:hover, button.equals:hover, button.clear:hover, button.backspace:hover {
+    border-color: rgb(226, 236, 192);
+    border-width: 5px;
 }

@@ -185,7 +185,3 @@ clearButton.addEventListener('click', function() {
     displayScreen.textContent = "CLEAR";
     }
 );
-
-//Rounding decimals to fit screen
-//pretty
-    // keep the display at fixed hight
