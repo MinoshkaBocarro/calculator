@@ -37,7 +37,7 @@ html {
 }
 
 .display-outline {
-    background-color: hsl(128, 60%, 80%);
+    background-color: #adebb6;
     box-shadow: rgba(0, 0, 0, 0.24) inset 0px 3px 8px;
     padding: 10px;
     display: flex;
@@ -170,4 +170,8 @@ button.zero:hover, button.decimal:hover, .numbers button:hover{
 button.operators:hover, button.equals:hover, button.clear:hover, button.backspace:hover {
     border-color: rgb(226, 236, 192);
     border-width: 5px;
+}
+
+.current-operator {
+    background-color: rgb(192, 255, 205);
 }

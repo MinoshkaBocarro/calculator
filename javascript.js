@@ -62,7 +62,8 @@ calculator.addEventListener('keyup', function (e) {
                 e.key === "-"||
                 e.key === "/"||
                 e.key === "*") {
-                    getOperator(e.key);
+                    getOperatorName(e.key);
+                    getOperator(e.key, operatorName);
     } else if (e.key === "="|| e.key === "Enter") {
         getResult();
     } else if (e.key === "Backspace") {
@@ -70,6 +71,19 @@ calculator.addEventListener('keyup', function (e) {
     }
 }
 );
+
+function getOperatorName (keyPressed) {
+    switch(keyPressed) {
+        case "+":
+            return operatorName = "add";
+        case "-":
+            return operatorName = "subtract";
+        case "*":
+            return operatorName = "multiply";
+        case "/":
+            return operatorName = "divide";
+    }
+}
 
 function getNumber(givenNum) {
     if ((operatorClicked === false) && equalsClicked) {
@@ -92,23 +106,40 @@ const operatorButtons = document.querySelectorAll(".operators");
 
 for (let i = 0; i < operatorButtons.length; i++) {
     operatorButtons[i].addEventListener('click', function(e) {
-        getOperator(e.target.classList[0]);
+        getOperator(e.target.classList[0], e.target.classList[2]);
     })
 }
 
-function getOperator (givenOperator) {
+function getOperator (givenOperator, operatorName) {
+    removeHighlight();
     operatorClicked = true
     if (firstNum === null && currentNumber.length > 0) { 
         firstNum = currentNumber.join("");
         currentNumber = [];
         operator = givenOperator;
+        highlightOperator(operatorName);
     } else if (secondNum === null && currentNumber.length > 0) {
         secondNum = currentNumber.join("");
         startEquation();
         operator = givenOperator;
+        highlightOperator(operatorName);
     } else {
         operator = givenOperator;
+        highlightOperator(operatorName);
     }
+}
+
+function highlightOperator (operatorName) {
+    document.querySelector(`.${operatorName}`).classList.add('current-operator');
+}
+
+
+function removeHighlight () {
+    document.querySelector(".add").classList.remove('current-operator');
+    document.querySelector(".subtract").classList.remove('current-operator');
+    document.querySelector(".multiply").classList.remove('current-operator');
+    document.querySelector(".divide").classList.remove('current-operator');
+    document.querySelector(".equals").classList.remove('current-operator');
 }
 
 const decimalButton = document.querySelector(".decimal");
@@ -131,14 +162,18 @@ function getResult () {
         && !(firstNum === "") 
         && (currentNumber.length > 0)){
             secondNum = currentNumber.join(""); 
+            removeHighlight();
             startEquation();
             equalsClicked = true;
+            document.querySelector(`.equals`).classList.add('current-operator');
         }
     if (operatorClicked) {
         secondNum = firstNum;
         startEquation();
+        removeHighlight();
         operatorClicked = false;
         equalsClicked = true;
+        document.querySelector(`.equals`).classList.add('current-operator');
     }
 }
 
@@ -178,6 +213,7 @@ function useBackspace () {
 const clearButton = document.querySelector(".clear");
 
 clearButton.addEventListener('click', function() {
+    removeHighlight();
     firstNum = null;
     secondNum = null;
     operator = null;
