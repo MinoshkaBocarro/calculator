@@ -145,11 +145,21 @@ function getResult () {
 
 function startEquation () {
     currentResult = operate(operator, firstNum, secondNum);
-    currentResult = Math.round((currentResult + Number.EPSILON) * 100) / 100;
+    if (currentResult.toString().length > 16) {
+        roundNum();
+    }
     displayScreen.textContent = currentResult; 
     firstNum = currentResult;
     secondNum = null;
     currentNumber = [];
+}
+
+function roundNum() {
+    const roundDecimalTo = currentResult.toString().split("").indexOf(".")
+    if (roundDecimalTo !== -1) {
+        roundBy = 10 ** (15 - roundDecimalTo)
+        currentResult = Math.round((currentResult + Number.EPSILON) * roundBy) / roundBy;
+    }
 }
 
 const backspaceButton = document.querySelector(".backspace")
