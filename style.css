@@ -17,33 +17,52 @@ html {
 
 .calculator {
     border: black 2px solid;
+    border-radius: 20px;
     margin: auto;
-    height: 320px;
-    width: 290px;
+    height: 620px;
+    width: 480px;
     display: flex;
     flex-direction: column;
 }
 
-.display {
-    height: 70px;
-    border: pink 2px solid;
+.display-container {
+    height: 160px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border: #c2fff5 solid;
+    background-color: hsla(128, 71%, 80%, 0.485);
+    box-shadow: rgba(0, 0, 0, 0.24) inset 0px 3px 8px;
+    border-width: 20px;
+    padding: 10px;
     flex-basis: auto;
+    flex-shrink: 0;
+    display: flex;
+}
+
+.display {
+    margin-left: auto;
+    margin-top: auto;
 }
 
 .buttons {
     display: flex;
     flex-grow: 1;
+    border: purple solid;
+    border-width: 2px 0 0 0;
 }
 
 
 .digits {
     display: flex;
     flex-direction: column;
+    border: purple solid;
+    border-width: 0 2px 0 0;
+    background-color: hwb(350 76% 0%);
+    border-bottom-left-radius: 20px;
 }
 
 .numbers {
-    width: 150px;
-    border: purple 2px solid;
+    width: 300px;
     display: flex;
     justify-content: space-around;
     align-content: space-around;
@@ -51,41 +70,85 @@ html {
     flex-grow: 5;
 }
 
-.function-buttons {
+.bottom-numbers {
+    width: 300px;
+    justify-content: space-between;
+    padding: 5px 10px; /* adjust this after final layout*/
+    align-items: center;
+    display: flex;
     flex-grow: 1;
+    border: purple solid;
+    border-width: 2px 0 0 0;
 }
 
-.equating-buttons {
-    border: orange 2px solid;
+.function-buttons {
+    flex-grow: 1;
+    background-color: hsl(308, 70%,80%);
+    border-bottom-right-radius: 20px;
+}
+
+.operating-buttons {
     display: flex;
     /* flex-direction: column; */
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
+    align-content: space-around;
+    gap: 15px;
     flex-wrap: wrap;
-    padding: 5px 0; /* adjust this after final layout*/
+    padding: 10px 12px; /* adjust this after final layout*/
 }
 
 .erasing-buttons {
-    width: 68px;
-    border: red 2px solid;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    display: flex;
+    gap: 15px;
+    padding: 15px 0;
 }
 
-.bottom-numbers {
-    width: 150px;
-    border: yellow 2px solid;
-    justify-content: space-between;
-    padding: 0 5px; /* adjust this after final layout*/
-    align-items: center;
+.equating-button {
     display: flex;
-    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 0;
 }
 
 .numbers button, .zero, .decimal {
-    height: 40px;
-    width: 40px;
+    height: 80px;
+    width: 80px;
 } 
 
-.equating-buttons button {
-    height: 55px;
-    width: 40px;
+button.operators {
+    height: 80px;
+    width: 60px;
+}
+
+button.equals {
+    height: 60px;
+    width: 150px;
+}
+
+button.clear {
+    height: 60px;
+    width: 150px;
+}
+
+button.backspace {
+    height: 60px;
+    width: 150px;
+}
+
+button {
+    background-color: ;
+    font-size: ;
+    padding: ;
+    border-radius: ;
+    border: ;
+    transition-duration: ;
+    box-shadow: ;
+    width: ;
+}
+
+button:hover {
+
 }
