@@ -88,13 +88,13 @@ function updateDisplayNumber () {
     displayScreen.textContent = currentNumber.join("");
 }
 
-const operatorButtons = document.querySelector(".operators");
+const operatorButtons = document.querySelectorAll(".operators");
 
-operatorButtons.addEventListener('click', function(e) {
-    if ((e.target.classList[1]==="operators")) {
+for (let i = 0; i < operatorButtons.length; i++) {
+    operatorButtons[i].addEventListener('click', function(e) {
         getOperator(e.target.classList[0]);
-    }
-});
+    })
+}
 
 function getOperator (givenOperator) {
     operatorClicked = true
