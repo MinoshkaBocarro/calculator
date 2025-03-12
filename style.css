@@ -31,18 +31,17 @@ html {
     height: 160px;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
-    background-color: hsl(170, 90%, 80%);
-    border-width: 20px;
+    background-color: hsl(217, 90%, 80%);
     display: flex;
 }
 
 .display-outline {
-    background-color: #adebb6;
+    background-color: #f0feff;
     box-shadow: rgba(0, 0, 0, 0.24) inset 0px 3px 8px;
     padding: 10px;
     display: flex;
     flex-grow: 1;
-    margin: 20px;
+    margin: 3cap;
     border: rgba(46, 194, 88, 0.686) solid 0.1px;
 }
 
@@ -51,7 +50,7 @@ html {
     margin-top: auto;
     font-size: 49px;
     padding: 0 5px;
-    max-width: 400px;
+    max-width: 390px;
     overflow-x: scroll;
 }
 
@@ -125,7 +124,7 @@ html {
 .numbers button, .zero, .decimal {
     height: 80px;
     width: 80px;
-    background-color: #e0f7f3;
+    background-color: #e0faff;
 } 
 
 button.operators {
@@ -145,7 +144,7 @@ button.clear {
 }
 
 .operators, .equals, .clear, .backspace {
-    background-color: #f2f3dc;
+    background-color: #f9fbe3;
 }
 
 button.backspace {
